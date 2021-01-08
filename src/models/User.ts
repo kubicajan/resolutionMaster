@@ -1,14 +1,14 @@
 export enum cUser {
-    id = 'id',
-    nickname = 'nickname',
+  id = "id",
+  nickname = "nickname",
 }
 
 export interface UserInterface {
-    id: string;
-    nickname: string;
+  id: string;
+  nickname: string;
 }
 
 export const User = (): UserInterface => ({
-    id: '',
-    nickname: '',
+  id: "",
+  nickname: "",
 });

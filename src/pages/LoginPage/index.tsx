@@ -1,7 +1,8 @@
 import React, { FunctionComponent } from "react";
+import LoginPageContainer from "../../containers/LoginPageContainer";
 
 const LoginPage: FunctionComponent = () => {
-  return <>I cry</>;
+  return <LoginPageContainer />;
 };
 
 export default LoginPage;
