@@ -1,16 +1,17 @@
-import { Box, Button, Grid, TextField, Typography } from "@material-ui/core";
-import { Field, Form as FormikForm, Formik } from "formik";
+import { Button, Grid, TextField, Typography } from "@material-ui/core";
+import { Form as FormikForm, Formik } from "formik";
 import React, { FunctionComponent } from "react";
 import { useIntl } from "react-intl";
-import { cUser, UserInterface } from "../../models/User";
+import {cUser, UserInterface} from "../../models/User";
 import { messages } from "../../localization/messages";
 
-interface LoginFormProps {
-  onSubmit: any;
-  // onSubmit: (values: UserInterface) => void;
+interface CreateUserFormProps {
+  onSubmit: (values: UserInterface) => void;
 }
 
-export const LoginForm: FunctionComponent<LoginFormProps> = ({ onSubmit }) => {
+const CreateUserForm: FunctionComponent<CreateUserFormProps> = ({
+  onSubmit,
+}) => {
   const { formatMessage } = useIntl();
 
   return (
@@ -20,7 +21,7 @@ export const LoginForm: FunctionComponent<LoginFormProps> = ({ onSubmit }) => {
           <FormikForm>
             <Grid container direction="column" alignItems="center" spacing={2}>
               <Typography variant={"h3"}>
-                {formatMessage(messages.unique.authentication.login)}
+                {formatMessage(messages.unique.authentication.createUser)}
               </Typography>
               <Grid item xs={12}>
                 <TextField name={cUser.nickname} label="{do me bro}" />
@@ -32,7 +33,7 @@ export const LoginForm: FunctionComponent<LoginFormProps> = ({ onSubmit }) => {
                 variant="contained"
                 fullWidth
               >
-                do it
+                what the fuck si this
               </Button>
             </Grid>
           </FormikForm>
@@ -41,3 +42,5 @@ export const LoginForm: FunctionComponent<LoginFormProps> = ({ onSubmit }) => {
     </Formik>
   );
 };
+
+export default CreateUserForm;

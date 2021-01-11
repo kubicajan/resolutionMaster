@@ -1,6 +1,6 @@
 export const Links: LinksInterface = {
   login: "/login",
-  register: "/register",
+  createUser: "/create-user",
 };
 
 interface LinkWithArgsType {
@@ -11,7 +11,7 @@ interface LinkWithArgsType {
 interface LinksInterface {
   // AUTH //
   login: string;
-  register: string;
+  createUser: string;
 }
 
 export const getLink = (

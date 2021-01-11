@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from "react";
-import { Card, Container } from "@material-ui/core";
+import { Box, Card, Container } from "@material-ui/core";
 import { useIntl } from "react-intl";
 import { LoginForm } from "../../forms/LoginForm";
 
@@ -8,7 +8,9 @@ const LoginPageContainer: FunctionComponent = () => {
 
   return (
     <Container component={Card}>
-      <LoginForm onSubmit={console.log("asd")} />
+      <Box my={2}>
+        <LoginForm onSubmit={console.log("asd")} />
+      </Box>
     </Container>
   );
 };

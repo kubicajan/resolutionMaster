@@ -8,7 +8,9 @@ import { withUnAuthLayout } from "./layout/UnAuthLayout";
 const LoginPage = withUnAuthLayout(
   withSuspense(lazy(() => import("./pages/LoginPage")))
 );
-const RegisterPage = withSuspense(lazy(() => import("./pages/RegisterPage")));
+const CreateUserPage = withUnAuthLayout(
+  withSuspense(lazy(() => import("./pages/CreateUserPage")))
+);
 
 export default function App() {
   return (
@@ -18,8 +20,8 @@ export default function App() {
           <Route exact path={getLink(Links.login)} component={LoginPage} />
           <Route
             exact
-            path={getLink(Links.register)}
-            component={RegisterPage}
+            path={getLink(Links.createUser)}
+            component={CreateUserPage}
           />
         </Switch>
       </div>
