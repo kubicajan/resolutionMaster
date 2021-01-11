@@ -29,33 +29,32 @@ class UserAPI {
     return new Promise((resolve, reject) => {
       firebase
         .auth()
-        .createUserWithEmailAndPassword("jan.kubica@gmail.com", "123456")
+        .createUserWithEmailAndPassword(
+          values.nickname + "@gmail.com",
+          "123456"
+        )
         .then((user) => {
-          // Signed in
-          // ...
+          //adding user to firestore (if not yet there)
+          const userRef = firebase
+            .firestore()
+            .doc(`${collection}/${values.nickname}`);
+          userRef
+            .get()
+            .then((doc) => {
+              if (!doc.exists) {
+                const { nickname } = values;
+                const user: UserInterface = { nickname };
+                userRef.set(user);
+                resolve();
+              }
+            })
+            .catch((error) =>
+              reject(
+                console.error("Error finding user in Firestore db: ", error)
+              )
+            );
         })
-        .catch((error) => {
-          var errorCode = error.code;
-          var errorMessage = error.message;
-          console.log(errorCode + " " + errorMessage);
-          // ..
-        });
-
-      // .then((user) => {
-      //   const userRef = firebase
-      //     .firestore()
-      //     .doc(`${collection}/${user.user?.uid}`);
-      //   userRef.get().then((doc) => {
-      //     if (!doc.exists) {
-      //       const { nickname } = values;
-      //       const user: UserInterface = {
-      //         nickname,
-      //       };
-      //       userRef.set(user);
-      //       resolve();
-      //     }
-      //   });
-      // });
+        .catch((error) => reject(console.error("Error saving user ", error)));
     });
   }
 }

@@ -1,13 +1,20 @@
 import { Button, Grid, TextField, Typography } from "@material-ui/core";
-import { Form as FormikForm, Formik } from "formik";
+import { Field, Form as FormikForm, Formik, useFormik } from "formik";
 import React, { FunctionComponent } from "react";
 import { useIntl } from "react-intl";
-import {cUser, UserInterface} from "../../models/User";
+import { cUser, User, UserInterface } from "../../models/User";
 import { messages } from "../../localization/messages";
+import { FormikTextField } from "../../components/FormikFields";
 
 interface CreateUserFormProps {
   onSubmit: (values: UserInterface) => void;
 }
+const useCreateInitialValues = (): UserInterface => {
+  const user = User();
+  return {
+    ...user,
+  };
+};
 
 const CreateUserForm: FunctionComponent<CreateUserFormProps> = ({
   onSubmit,
@@ -15,7 +22,7 @@ const CreateUserForm: FunctionComponent<CreateUserFormProps> = ({
   const { formatMessage } = useIntl();
 
   return (
-    <Formik onSubmit={onSubmit} initialValues={cUser}>
+    <Formik onSubmit={onSubmit} initialValues={useCreateInitialValues()}>
       {() => {
         return (
           <FormikForm>
@@ -24,7 +31,7 @@ const CreateUserForm: FunctionComponent<CreateUserFormProps> = ({
                 {formatMessage(messages.unique.authentication.createUser)}
               </Typography>
               <Grid item xs={12}>
-                <TextField name={cUser.nickname} label="{do me bro}" />
+                <FormikTextField name={cUser.nickname} label="{click on me}" />
               </Grid>
               <Button
                 disableElevation
@@ -33,7 +40,7 @@ const CreateUserForm: FunctionComponent<CreateUserFormProps> = ({
                 variant="contained"
                 fullWidth
               >
-                what the fuck si this
+                click me too
               </Button>
             </Grid>
           </FormikForm>
